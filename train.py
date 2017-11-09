@@ -22,9 +22,9 @@ LAW_NUM = 452
 # 隐藏层节点数
 HIDDEN_LAYER_NUM = 64
 # 训练用缓存文件存储位置
-TEMP_PATH = "tmp"
+TEMP_PATH = "/tmp/case/train"
 # 测试用缓存文件存储位置
-TEST_TEMP_PATH = "test"
+TEST_TEMP_PATH = "/tmp/case/test"
 # 模型存储位置
 SAVE_PATH = "sav"
 # 单步训练数
@@ -513,7 +513,7 @@ def testing_procedure(file_name, output_name):
     test_data = Classifier.read_test_file(file_name)
     test_result = OrderedDict()
     for identity in test_data:
-        test_result[identity] = {"id": identity}
+        test_result[identity] = {"id": str(identity)}
     PenaltyClassifier().classifier(test_data, test_result)
     LawsClassifier().classifier(test_data, test_result)
     with open(output_name, 'w') as f:
